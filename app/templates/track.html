@@ -1,0 +1,125 @@
+<html>
+<head> 
+{%load static%}
+    <!-- Basic Page Needs -->
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+    <title>Price html template</title>
+
+    <meta name="author" content="themesflat.com">
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" type="text/css" href="/app/static/assets/css/bootstrap.css" >
+
+    <!-- Theme Style -->
+    <link rel="stylesheet" type="text/css" href="/app/static/assets/css/style.css">
+
+    <!-- Responsive -->
+    <link rel="stylesheet" type="text/css" href="/app/static/assets/css/responsive.css">
+
+    <!-- Favicon and touch icons  -->
+    <link href="/app/static/icon/favicon.png" rel="apple-touch-icon-precomposed' %}" sizes="48x48">
+    <link href="{%static 'icon/apple-touch-icon-32-precomposed.png" rel="apple-touch-icon-precomposed' %}">
+    <style>
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+            height:120px ;
+            width:120px;
+            }
+    </style>
+    <script>function fun(){
+    document.getElementById('append').innerHTML=``;
+}</script>
+</head>
+<body>
+    <h1 style="text-align:center;margin-top:80px;margin-bottom:80px;">ORDER TRACKER</h1>
+    <form action="." method="post">
+        {%csrf_token%}
+        <div class="form-group"style="text-align:center;">
+            <label class="bmd-label-floating" >Please Enter your Order Id</label>
+            <input type="text" class="form-control" name="track_id" align="center" onclick="fun()"  style="border-style: groove;text-align:center; width: 300px;height:auto;margin: auto;" >
+            <div id="append"></div>
+            <button type="submit" class="btn" style="margin-top:5px;">Submit</button>
+        </div>      
+  </form>
+    <span id="append_template"></span>
+    <script type="text/javascript" src="/app/static/javascript/bootstrap.min.js %}"></script>
+    <script type="text/javascript" src="/app/static/javascript/html5shiv.js"></script>
+    <script type="text/javascript" src="/app/static/javascript/jquery.min.js"></script> 
+</body>
+<script>
+document.getElementById('append').innerHTML=``;
+flag={{flag|safe}}
+
+
+
+if(flag)
+{
+track={{track|safe}}
+style_code_list={{style_code_list|safe}}
+product_name={{product_name|safe}}
+status={{status|safe}}
+var y=status.split(",");
+image={{image|safe}}
+expected_delivery_date={{expected_delivery_date|safe}}
+document.getElementById('append_template').innerHTML=`<h2 style="text-align:center;font-size:27px;background-color: #f1f1f1;">Order Id:<b> ${track[0]} </b></h2>
+                                                      <h2 style="text-align:center;font-size:27px;background-color: #f1f1f1;">Client Name:<b> ${track[2]}</b></h2>
+                                                      <h2 style="text-align:center;font-size:27px;background-color: #f1f1f1;">Order Placed at:<b> ${track[1]}</b></h2>
+                                                      <section class="flat-row" style="padding:64px 0;">
+                                                        <div class="container">
+                                                            <div class="row" id="append_template_detail">
+                                                            </div>
+                                                        </div>
+                                                    </section>`;
+var len=product_name.length;
+var list=['fabric inhouse','cutting','printing and labelling','stitching','ironing packing','quality check','shipped']
+for(var i=len-1;i>=0;i--)
+{   var template=`<div class="column">
+                <div class="wrap-price-table">
+                <div class="flat-price-table">                                  
+                <div class="price" style="padding-top: 16px;padding-bottom: 20px;">
+                <span style="font-size:18px;font-color:black;">Style Code: ${style_code_list[i]}</span>
+                <br>
+                <span style="font-size:18px;font-color:black;">Product Name :${product_name[i]}</span>
+                <br>
+                <span style="font-size:18px;font-color:black;">Delivery date: ${expected_delivery_date[i]}</span>
+                <br>
+                <img src="http://127.0.0.1:8000/app/${image[i]}"  alt="" class="center">
+                    </div>
+                <ul class="price-table-list" id="append_track${style_code_list[i]}">
+
+                </ul>
+                </div>
+                </div>
+                </div>`
+$('#append_template_detail').append(template);
+
+var ind=list.indexOf(y[i]);
+console.log(y[i]);
+var count=0;
+for(var j=0;j<=ind;j++)
+{
+    template=`<li ><span style="font-weight:bolder;font-size:20px;color:green;"> &#x2714;  </span> ${list[j]}</li>`
+    $("#append_track"+style_code_list[i]).append(template);
+    count++;
+}
+for(var k=count;k<list.length;k++)
+{
+    template=`<li> <span style="font-weight:bolder;font-size:20px;color:red;"> &#x2718;  </span>${list[k]} </li>`
+    $("#append_track"+style_code_list[i]).append(template);
+}
+}
+}
+else
+{
+document.getElementById('append').innerHTML=`<h3 class="text-secondary" style="text-align:center;color:red"> Invalid Order Id.. </h3>`;
+}
+</script>
+
+</html>

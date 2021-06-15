@@ -1,0 +1,85 @@
+/* Media Queries
+-------------------------------------------------------------- */
+@media only screen and (max-width: 1366px) {
+	.header .header-wrap .logo {
+		margin: 25px 100px 0 30px;
+	}
+
+	.header.upscrolled .header-wrap .logo {
+		margin: 23px 155px 0 30px;
+	}
+
+	.row-map .widget-sv {
+	    left: 80px;
+	}
+	
+}
+
+/* Smaller than standard 1200 */
+@media only screen and (max-width: 1199px) {
+	
+}
+
+/* Smaller than standard 992 */
+@media only screen and (max-width: 991px) {
+	.wrap-price-table {
+		width: 50%;
+		margin-bottom: 20px;
+	}
+
+	.flat-price-inner .price:before {
+		 border-left: 715px solid #595959;
+	}
+
+	.flat-price-inner:hover .price:before {
+		border-left: 715px solid #ed9f24;
+
+	}
+
+	
+}
+
+/* Tablet Landscape */
+ @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+
+}
+
+/* Tablet Portrait Size */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+	
+}
+
+/* All Mobile Sizes */
+@media only screen and (max-width: 767px) {
+
+	
+}
+
+/* Mobile Landscape Size */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+	
+}
+
+/* Mobile Portrait Size */
+@media only screen and (max-width: 479px) {
+
+	
+}
+
+@media (max-width: 320px) {	
+	.wrap-price-table {
+		width: 100%;
+		margin-bottom: 20px;
+	}
+
+	.flat-price-inner .price:before {
+		 border-left: 270px solid #595959;
+	}
+
+	.flat-price-inner:hover .price:before {
+		border-left: 270px solid #ed9f24;
+
+	}
+	
+}
+
